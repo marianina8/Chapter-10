@@ -8,10 +8,10 @@ import (
 
 // UserExperience is a survey that
 func UserExperience() {
-	qs := []*survey.Question{
+	questions := []*survey.Question{
 		{
 			Name:      "email",
-			Prompt:    &survey.Input{Message: "What is your email?"},
+			Prompt:    &survey.Input{Message: "What is your email addres?"},
 			Validate:  survey.Required,
 			Transform: survey.Title,
 		},
@@ -37,14 +37,14 @@ func UserExperience() {
 		},
 	}
 
-	answers := struct {
+	results := struct {
 		Email       string
 		Rating      string
 		Issues      []string
 		Suggestions string
 	}{}
 
-	err := survey.Ask(qs, &answers)
+	err := survey.Ask(questions, &results)
 	if err != nil {
 		fmt.Println(err.Error())
 		return
